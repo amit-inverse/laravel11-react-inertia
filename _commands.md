@@ -28,5 +28,15 @@ php artisan migrate:refresh --seed
 ```
 \App\Models\Project::count()
 \App\Models\Task::count()
-\App\Models\Task::qurey()->paginate(5)->all()
+\App\Models\Task::query()->paginate(5)->all()
+```
+
+```
+php artisan make:controller ProjectController --model=Project --requests --resource
+php artisan make:controller TaskController --model=Task --requests --resource
+php artisan make:controller UserController --model=User --requests --resource
+```
+
+```
+php artisan route:list
 ```
