@@ -40,3 +40,8 @@ php artisan make:controller UserController --model=User --requests --resource
 ```
 php artisan route:list
 ```
+
+```
+php artisan make:resource ProjectResouce
+php artisan make:resource TaskResouce
+```
