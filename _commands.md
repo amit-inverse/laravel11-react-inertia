@@ -24,3 +24,9 @@ php artisan make:model Task -fm
 php artisan migrate --seed
 php artisan migrate:refresh --seed
 ```
+
+```
+\App\Models\Project::count()
+\App\Models\Task::count()
+\App\Models\Task::qurey()->paginate(5)->all()
+```
