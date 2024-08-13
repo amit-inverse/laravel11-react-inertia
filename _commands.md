@@ -49,3 +49,7 @@ php artisan make:resource TaskResouce
 ```
 php artisan make:resource UserResource
 ```
+
+```
+npm install @heroicons/react -S
+```
