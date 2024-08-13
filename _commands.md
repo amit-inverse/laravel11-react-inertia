@@ -45,3 +45,7 @@ php artisan route:list
 php artisan make:resource ProjectResouce
 php artisan make:resource TaskResouce
 ```
+
+```
+php artisan make:resource UserResource
+```
