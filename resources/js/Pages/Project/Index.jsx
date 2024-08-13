@@ -1,3 +1,4 @@
+import Pagination from "@/Components/Pagination";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 
@@ -43,8 +44,12 @@ export default function index({ auth, projects }) {
                       </td>
                       <td className="px-3 py-2">{project.name}</td>
                       <td className="px-3 py-2">{project.status}</td>
-                      <td className="px-3 py-2 text-nowrap">{project.created_at}</td>
-                      <td className="px-3 py-2 text-nowrap">{project.due_date}</td>
+                      <td className="px-3 py-2 text-nowrap">
+                        {project.created_at}
+                      </td>
+                      <td className="px-3 py-2 text-nowrap">
+                        {project.due_date}
+                      </td>
                       <td className="px-3 py-2">{project.createdBy.name}</td>
                       <td className="px-3 py-2 text-right">
                         <Link
@@ -64,6 +69,8 @@ export default function index({ auth, projects }) {
                   ))}
                 </tbody>
               </table>
+
+              <Pagination links={projects.meta.links} />
             </div>
           </div>
         </div>
