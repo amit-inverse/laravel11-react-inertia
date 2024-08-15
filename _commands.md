@@ -53,3 +53,7 @@ php artisan make:resource UserResource
 ```
 npm install @heroicons/react -S
 ```
+
+```
+php artisan storage:link
+```
