@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
-use App\Http\Resources\ProjectResouce;
+use App\Http\Resources\ProjectResource;
 use App\Http\Resources\TaskResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -35,7 +35,7 @@ class ProjectController extends Controller
             ->onEachSide(1);
 
         return inertia('Project/Index', [
-            'projects' => ProjectResouce::collection($projects),
+            'projects' => ProjectResource::collection($projects),
             'queryParams' => request()->query() ?: null,
             'success' => session('success'),
         ]);
@@ -91,7 +91,7 @@ class ProjectController extends Controller
             ->onEachSide(1);
 
         return inertia('Project/Show', [
-            'project' => new ProjectResouce($project),
+            'project' => new ProjectResource($project),
             'tasks' => TaskResource::collection($tasks),
             'queryParams' => request()->query() ?: null,
         ]);
@@ -103,7 +103,7 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         return inertia('Project/Edit', [
-            'project' => new ProjectResouce($project),
+            'project' => new ProjectResource($project),
         ]);
     }
 

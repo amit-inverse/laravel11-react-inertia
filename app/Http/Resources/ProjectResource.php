@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
 
-class ProjectResouce extends JsonResource
+class ProjectResource extends JsonResource
 {
     public static $wrap = false;
 
