@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Resources\ProjectResouce;
 use App\Http\Resources\TaskResource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
@@ -101,7 +102,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return inertia('Project/Edit', [
+            'project' => new ProjectResouce($project),
+        ]);
     }
 
     /**
@@ -109,7 +112,21 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $data = $request->validated();
+
+        $image = $data['image'] ?? null;
+        if ($image) {
+            if ($project->image_path) {
+                Storage::disk('public')->deleteDirectory(dirname($project->image_path));
+            }
+            $data['image_path'] = $image->store('project/' . Str::random(), 'public');
+        }
+
+        $data['updated_by'] = Auth::id();
+
+        $project->update($data);
+
+        return to_route('project.index')->with('success', "Project \"$project->name\" was updated");
     }
 
     /**
@@ -119,7 +136,10 @@ class ProjectController extends Controller
     {
         $name = $project->name;
 
-        $project->tasks()->delete(); 
+        $project->tasks()->delete();
+        if ($project->image_path) {
+            Storage::disk('public')->deleteDirectory(dirname($project->image_path));
+        }
         $project->delete();
 
         return to_route('project.index')->with('success', "Project \"$name\" was deleted");
