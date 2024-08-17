@@ -57,3 +57,7 @@ npm install @heroicons/react -S
 ```
 php artisan storage:link
 ```
+
+```
+php artisan make:controller DashboardController
+```
