@@ -142,7 +142,7 @@ class TaskController extends Controller
 
     public function myTasks()
     {
-        $user = auth()->user;
+        $user = auth()->user();
         $query = Task::query()->where('assigned_user_id', $user->id);
 
         $sortField = request('sort_field', 'created_at');
